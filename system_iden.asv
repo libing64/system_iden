@@ -1,0 +1,10 @@
+load('sim_data.mat');
+x = input_data.data;
+y = output_data.data;
+N = length(x);
+fs = 1000;
+t = (1 : N) / fs;
+
+h = fft(y) ./ fft(x);
+mag = abs(h);
+phase = angle(h)£»
