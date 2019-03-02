@@ -2,6 +2,7 @@
 load('matlab.mat');
 x = input_data.data;
 N = length(x);
+nfft = 2^nextpow2(N)
 
 y = output_data.data(1:N);
 
@@ -17,12 +18,13 @@ subplot(2, 1, 2);
 plot(f, y);
 
 figure(2);
+fn = (1 : nfft) / N * fs;
 fftx = windowing_fft(x);
 title('fft analysis of input data')
 subplot(2, 1, 1);
-plot(f, abs(fftx));
+plot(fn, abs(fftx));
 subplot(2, 1, 2);
-plot(f, angle(fftx));
+plot(fn, angle(fftx));
 
 
 h = windowing_fft(y) ./ windowing_fft(x);
@@ -31,9 +33,9 @@ phase = angle(h);
 figure(3);
 title('system iden result')
 subplot(2, 1,1);
-plot(20 * log(f), mag);
+plot(20 * log(fn), mag);
 subplot(2, 1, 2);
-plot(20 * log(f), phase);
+plot(20 * log(fn), phase);
 
 figure(4);
 title('ideal bode plot');
