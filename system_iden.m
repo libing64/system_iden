@@ -47,6 +47,6 @@ semilogx(fn, phase);
 
 figure(4);
 title('ideal bode plot');
-H = tf([1],[1, 0.5, 1]);
+H = tf([1],[1, 0.2, 1]);
 bode(H);
 
